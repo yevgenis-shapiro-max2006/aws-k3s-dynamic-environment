@@ -1,4 +1,5 @@
 
+
 output "k3s_master_ips" {
   description = "Public IPs of all master nodes"
   value       = concat(aws_instance.k3s_master_primary[*].public_ip, aws_instance.k3s_master_additional[*].public_ip)
