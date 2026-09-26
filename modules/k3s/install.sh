@@ -188,15 +188,12 @@ if [ "$NODE_INDEX" -eq 0 ]; then
   fi
 
   export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
-
   echo "[+] Adding ingress-nginx Helm repository..."
-
   helm repo add ingress-nginx \
     https://kubernetes.github.io/ingress-nginx \
     2>/dev/null || true
 
   helm repo update
-
   echo "[+] Installing NGINX Ingress Controller..."
 
   helm upgrade --install ingress-nginx \
