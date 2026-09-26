@@ -65,3 +65,4 @@ variable "ssh_private_key_path" {
   type    = string
   default = "/home/ubuntu/.ssh/id_rsa"
 }
+
