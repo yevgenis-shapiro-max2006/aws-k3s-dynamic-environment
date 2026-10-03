@@ -252,9 +252,18 @@ if [ "$NODE_INDEX" -eq 0 ]; then
   kubectl rollout status deployment/argocd-server -n argocd
 
   sleep 5
-  echo ""
   echo "[+] Deploy Software Application ..."
   kubectl apply -f /tmp/crypterio.yaml || true 
+
+  sleep 5
+  helm repo add opendepot https://opendepot.defdev.io
+  helm repo update
+  helm install opendepot opendepot/opendepot \
+    -n opendepot-system \
+    --create-namespace \
+    --set global.image.tag=v0.1.0 \
+    --set server.service.type=ClusterIP \
+    --set depot.enabled=false
   
   echo ""
   echo "[+] K3s bootstrap completed successfully"
