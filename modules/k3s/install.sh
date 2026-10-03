@@ -249,6 +249,10 @@ if [ "$NODE_INDEX" -eq 0 ]; then
   --type='json' \
   -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--insecure"}]'
   kubectl rollout status deployment/argocd-server -n argocd
+
+  sleep 5
+  echo "[+] Deploy Software Application ..."
+  kubectl apply -f /tmp/crypterio.yaml || true 
   
   echo ""
   echo "[+] K3s bootstrap completed successfully"
