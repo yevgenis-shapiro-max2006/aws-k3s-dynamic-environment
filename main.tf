@@ -275,6 +275,11 @@ resource "aws_instance" "k3s_master_primary" {
     destination = "/tmp/install.sh"
   }
 
+  provisioner "file" {
+    source      = "./modules/deploy/crypterio.yaml"
+    destination = "/tmp/crypterio.yaml"
+  }
+
   provisioner "remote-exec" {
     inline = [
       "chmod 600 /home/ubuntu/.ssh/id_rsa",
