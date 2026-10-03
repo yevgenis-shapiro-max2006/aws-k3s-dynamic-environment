@@ -225,6 +225,7 @@ if [ "$NODE_INDEX" -eq 0 ]; then
   kubectl get svc -n ingress-nginx
 
   sleep 5
+  echo ""
   echo "[+] Installing Argo Controller..."
   helm repo add argo https://argoproj.github.io/argo-helm
   helm repo update
@@ -251,6 +252,7 @@ if [ "$NODE_INDEX" -eq 0 ]; then
   kubectl rollout status deployment/argocd-server -n argocd
 
   sleep 5
+  echo ""
   echo "[+] Deploy Software Application ..."
   kubectl apply -f /tmp/crypterio.yaml || true 
   
