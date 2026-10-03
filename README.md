@@ -23,6 +23,9 @@ terraform init
 terraform validate
 terraform plan -var-file="template.tfvars"
 terraform apply -var-file="template.tfvars" -auto-approve
+
+terraform -chdir=./modules/argo init
+terraform -chdir=./modules/argo apply -auto-approve
 ```
 
 🧩 Config 
