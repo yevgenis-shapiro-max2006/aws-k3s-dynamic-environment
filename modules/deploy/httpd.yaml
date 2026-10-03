@@ -1,0 +1,41 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-server
+  labels:
+    app: httpd-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpd-server
+  template:
+    metadata:
+      labels:
+        app: httpd-server
+    spec:
+      containers:
+      - name: httpd-server
+        image: virtapp/apache:7f6c4bf4-3-6
+        ports:
+          - name: http-port
+            containerPort: 80
+      restartPolicy: Always
+      nodeSelector: {}
+        
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: httpd-server
+spec:
+  selector:
+    app: httpd-server
+  type: ClusterIP
+  ports:
+    - name: http-port
+      port: 8080
+      targetPort: 80
